@@ -1,4 +1,4 @@
-export interface StaticRotueAlternateLocale {
+export interface StaticRouteAlternateLocale {
     [localeId: string]: string;
 }
 
@@ -7,7 +7,7 @@ export interface StaticRouteBase<TType, TData> {
     id: string;
     type: TType;
     locale: string;
-    alternateLocale?: StaticRotueAlternateLocale;
+    alternateLocale?: StaticRouteAlternateLocale;
     data?: TData;
 }
 
