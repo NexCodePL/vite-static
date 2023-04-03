@@ -1,7 +1,13 @@
+export interface StaticRotueAlternateLocale {
+    [localeId: string]: string;
+}
+
 export interface StaticRouteBase<TType, TData> {
     path: string;
     id: string;
     type: TType;
+    locale: string;
+    alternateLocale?: StaticRotueAlternateLocale;
     data?: TData;
 }
 
