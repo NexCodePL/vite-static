@@ -1,5 +1,5 @@
 import { readFileJSON, writeFile } from "@nexcodepl/fs";
-import { Config, StaticRouteBase, StaticRouteBaseGetData } from "./types.js";
+import { Config, RouteData, StaticRouteBase, StaticRouteBaseGetData } from "./types.js";
 
 export async function prepareStaticFiles<TStaticRoute extends StaticRouteBase<any, any>>(
     config: Config<TStaticRoute>
@@ -11,7 +11,7 @@ export async function prepareStaticFiles<TStaticRoute extends StaticRouteBase<an
     }
 }
 
-export async function getStaticFile<T extends StaticRouteBase<any, any>>(route: T): Promise<StaticRouteBaseGetData<T>> {
+export async function getStaticFile<T extends StaticRouteBase<any, any>>(route: T): Promise<RouteData<T>> {
     const data = await readFileJSON<StaticRouteBaseGetData<T>>(`./public/static/${route.id}.json`);
 
     if (!data) throw new Error(`Cannot get static-data file ./public/static/${route.id}.json`);
