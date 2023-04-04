@@ -44,7 +44,7 @@ export async function build<T extends StaticRouteBase<any, any>>(config: Config<
         const headContent = generateHeadContent(htmlData);
 
         const html = template
-            .replace(`"{lang}"`, htmlData.lang ?? "en")
+            .replace(`{lang}`, htmlData.lang ?? "en")
             .replace(`<!--head-data-->`, headContent)
             .replace(
                 `<!--static-data-->`,
