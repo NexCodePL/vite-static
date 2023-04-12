@@ -58,7 +58,7 @@ export async function build<T extends StaticRouteBase<any, any>>(config: Config<
 
         const path = `./build/static${route.path}${route.path !== "/" ? "/" : ""}index.html`;
 
-        writeFile(path, html);
+        await writeFile(path, html);
     }
 }
 
