@@ -1,12 +1,12 @@
 import { readFileSync } from "fs";
 import { resolve } from "path";
 import { Config, HtmlData, StaticRouteBase } from "./types.js";
-import { build as viteBuild } from "vite";
+import { InlineConfig, build as viteBuild } from "vite";
 import react from "@vitejs/plugin-react";
 import { getStaticFile, prepareStaticFiles } from "./prepareStaticFiles.js";
 import { writeFile } from "@nexcodepl/fs";
 
-export async function build<T extends StaticRouteBase<any, any>>(config: Config<T>) {
+export async function build<T extends StaticRouteBase<any, any>>(config: Config<T>, viteConfig: InlineConfig = {}) {
     await prepareStaticFiles(config);
 
     await viteBuild({
@@ -14,6 +14,7 @@ export async function build<T extends StaticRouteBase<any, any>>(config: Config<
         build: {
             outDir: "./build/static",
         },
+        ...viteConfig,
     });
 
     console.log(`Static assets built`);
