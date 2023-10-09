@@ -57,10 +57,16 @@ export async function build<T extends StaticRouteBase<any, any>>(config: Config<
             )
             .replace(`<!--app-html-->`, appHtml);
 
-        const path = `./build/static${route.path}${route.path !== "/" ? "/" : ""}index.html`;
+        const path = `./build/static${getPath(route)}`;
 
         await writeFile(path, html);
     }
+}
+
+function getPath<T extends StaticRouteBase<any, any>>(route: T): string {
+    if (route.path === "/") return "/index.html";
+    if (route.usePathAsFilename) return `${route.path}.html`;
+    return `${route.path}/index.html`;
 }
 
 function mergeData(defaultHtmlData: HtmlData | undefined, routeHtmlDataRaw: HtmlData | undefined): HtmlData {

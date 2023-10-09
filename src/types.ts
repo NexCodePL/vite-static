@@ -9,6 +9,7 @@ export interface StaticRouteBase<TType, TData> {
     locale: string;
     alternateLocale?: StaticRouteAlternateLocale;
     data?: TData;
+    usePathAsFilename?: boolean;
 }
 
 export type StaticRouteBaseGetData<T extends StaticRouteBase<any, any>> = T extends StaticRouteBase<any, infer TData>
