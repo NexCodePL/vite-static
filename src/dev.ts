@@ -16,6 +16,9 @@ export async function dev<TStaticRoute extends StaticRouteBase<any, any>>(
         server: {
             port: 3400,
         },
+        define: {
+            "process.env.STATIC_BUILD": JSON.stringify(false),
+        },
         ...viteConfig,
     });
 

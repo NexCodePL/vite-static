@@ -16,6 +16,9 @@ export async function build<T extends StaticRouteBase<any, any>>(config: Config<
             outDir: "./build/static",
             ...(viteConfig.build ?? {}),
         },
+        define: {
+            "process.env.STATIC_BUILD": JSON.stringify(false),
+        },
     });
 
     console.log(`Static assets built`);
