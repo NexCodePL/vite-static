@@ -11,10 +11,11 @@ export async function build<T extends StaticRouteBase<any, any>>(config: Config<
 
     await viteBuild({
         plugins: [react()],
+        ...viteConfig,
         build: {
             outDir: "./build/static",
+            ...(viteConfig.build ?? {}),
         },
-        ...viteConfig,
     });
 
     console.log(`Static assets built`);
@@ -25,6 +26,10 @@ export async function build<T extends StaticRouteBase<any, any>>(config: Config<
             outDir: "./build/prerender",
             ssr: "./src/index-server.tsx",
             copyPublicDir: false,
+            ...(viteConfig.build ?? {}),
+        },
+        define: {
+            "process.env.STATIC_BUILD": JSON.stringify(true),
         },
     });
 
